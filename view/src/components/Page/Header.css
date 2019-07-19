@@ -1,0 +1,9 @@
+#page-header {
+  height: 200px;
+  background: url("../Slider/img/image1.jpg");
+  background-position: 360px;
+  background-attachment: fixed;
+  color: white;
+  border-bottom: 1px #eee solid;
+  padding-top: 50px;
+}

@@ -1,0 +1,9 @@
+#home-heading {
+  position: relative;
+  min-height: 200px;
+  background: url("../Slider/img/lights.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #fff;
+}
