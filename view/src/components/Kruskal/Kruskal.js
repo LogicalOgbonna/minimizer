@@ -126,16 +126,16 @@ class Kruskal extends Component {
     let options = {
       layout: {
         hierarchical: true
+      },
+      edges: {
+        color: "#000000"
       }
-      // edges: {
-      //   color: "#000000"
-      // }
     };
 
     let events = {
       select: function(event) {
-        // let { nodes, edges } = event;
-        // console.log(nodes, edges);
+        let { nodes, edges } = event;
+        console.log(nodes, edges);
       }
     };
     return (
@@ -201,18 +201,48 @@ class Kruskal extends Component {
                 </div>
               </form>
 
-              <div className="row mb-5 ">
-                <div className="pb-5 mb-5 col-md-6 col-lg-6 col-sm-6">
-                  <h3 className="text-muted text-center">Your Graph</h3>
-                  {Object.keys(this.state.graph).length > 0 && (
-                    <Graph
-                      graph={this.state.graph}
-                      options={options}
-                      events={events}
-                    />
-                  )}
+              <div className="container">
+                <div className="row mb-5 ">
+                  <div className="col-md-1" />
+                  <div
+                    // style={{ height: "700px", width: "100%" }}
+                    className=" col-md-10 col-lg-10 col-sm-10"
+                  >
+                    <h3 className="text-muted text-center">Your Graph</h3>
+                    {Object.keys(this.state.graph).length > 0 && (
+                      <Graph
+                        graph={this.state.graph}
+                        options={options}
+                        events={events}
+                        style={{ height: "100%", width: "100%" }}
+                      />
+                    )}
+                  </div>
+                  <div className="col-md-1" />
+
+                  {/* <div
+                    style={{ height: "700px", width: "100%" }}
+                    className=" col-md-6 col-lg-6 col-sm-6"
+                  >
+                    <h3 className="text-muted text-center">
+                      Cost Effective Graph
+                    </h3>
+
+                    {Object.keys(this.state.kruskalGraph).length > 0 && (
+                      <Graph
+                        graph={this.state.kruskalGraph}
+                        options={options}
+                        events={events}
+                        style={{ height: "100%", width: "100%" }}
+                      />
+                    )}
+                  </div> */}
                 </div>
-                <div className="pb-5 mb-5 col-md-6 col-lg-6 col-sm-6">
+              </div>
+              <div className="row mb-5">
+                <div className="col-md-1" />
+
+                <div className=" col-md-10 col-lg-10 col-sm-10">
                   <h3 className="text-muted text-center">
                     Cost Effective Graph
                   </h3>
@@ -222,10 +252,13 @@ class Kruskal extends Component {
                       graph={this.state.kruskalGraph}
                       options={options}
                       events={events}
+                      style={{ height: "100%", width: "100%" }}
                     />
                   )}
                 </div>
+                <div className="col-md-1" />
               </div>
+
               <div className="row mb-5">
                 <div className="col-md-3" />
                 <div className="col-md-6 col-sm-6 col-lg-6 text-center">

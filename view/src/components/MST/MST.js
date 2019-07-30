@@ -15,7 +15,8 @@ class Career extends Component {
         <section id="mst" className="py-3">
           <div className="container">
             <div className="row">
-              <div className="col-md-8 offset-2">
+              <div className="col-md-1" />
+              <div className="col-md-8">
                 <h1 className="text-bold text-center text-uppercase">
                   Minimal Spanning Tree (MST) Problem{" "}
                 </h1>
@@ -49,13 +50,18 @@ class Career extends Component {
                   undirected graph network supplied by a user.
                 </p>
               </div>
+              <div className="col-md-1" />
             </div>
+
             <div className="row">
-              <div className="col-md-8 offset-2">
+              <div className="col-md-1" />
+
+              <div className="col-md-8">
                 <h1 className="text-bold text-center text-uppercase">
                   Minimal Spanning Tree (MST) Algorithms{" "}
                 </h1>
               </div>
+              <div className="col-md-1" />
             </div>
           </div>
         </section>
