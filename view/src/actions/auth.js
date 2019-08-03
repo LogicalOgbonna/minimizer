@@ -33,15 +33,24 @@ export const errors = error => ({
 
 export const login = user => dispatch => {
   axios
-    .post("/api/users/login", user)
+    .post("/api/user/auth/signin", user)
     .then(user => {
       const token = user.data.token;
-      localStorage.cas = JSON.stringify(token);
+      localStorage.cost = JSON.stringify(token);
       const currentUser = jwtDecode(token);
-      dispatch(userLoggedIn(currentUser));
-      history.push("/dashboard");
-      // window.location.href = "/dashboard";
-      setAuthorizationHeader(token);
+      axios.get(`/api/user/auth/current/${currentUser.id}`).then(user => {
+        dispatch(
+          userLoggedIn({
+            admin: user.data.admin,
+            email: user.data.email,
+            avatar: user.data.avatar,
+            reason: user.data.reason,
+            id: user.data._id
+          })
+        );
+        history.push("/mst");
+        setAuthorizationHeader(token);
+      });
     })
     .catch(error => {
       // console.log(error.response.data);
@@ -52,27 +61,36 @@ export const login = user => dispatch => {
 
 export const register = user => dispatch => {
   axios
-    .post("/api/users/register", user)
+    .post("/api/user/auth/signup", user)
     .then(res => {
       const token = res.data.token;
-      localStorage.cas = JSON.stringify(token);
+      localStorage.cost = JSON.stringify(token);
       const currentUser = jwtDecode(token);
-      dispatch(userLoggedIn(currentUser));
-      history.push("/dashboard");
-      // window.location.href = "/dashboard";
-      setAuthorizationHeader(token);
+      axios.get(`/api/user/auth/current/${currentUser.id}`).then(user => {
+        dispatch(
+          userLoggedIn({
+            admin: user.data.admin,
+            email: user.data.email,
+            avatar: user.data.avatar,
+            reason: user.data.reason,
+            id: user.data._id
+          })
+        );
+        history.push("/mst");
+        setAuthorizationHeader(token);
+      });
     })
     .catch(error => {
-      // console.log(error.response.data);
       dispatch(errors(error.response.data));
     });
 };
 
 export const logout = () => dispatch => {
-  dispatch(userLoggedOut({}));
-  localStorage.cas = "";
-  localStorage.code = "";
+  // window.location.href = "/";
+  localStorage.cost = "";
 
   setAuthorizationHeader();
+  dispatch(userLoggedOut({}));
+
   history.push("/");
 };

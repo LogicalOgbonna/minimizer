@@ -9,11 +9,15 @@ import Contact from "./components/Contact/Contact";
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
 
+import { Login, Register } from "./components/Auth/index";
+
 class App extends Component {
   render() {
     return (
       <Switch>
         <Route path="/" exact name="Home" component={Landing} />
+        <Route path="/register" exact name="Home" component={Register} />
+        <Route path="/login" exact name="Home" component={Login} />
         <Route path="/mst" exact name="MST" component={MST} />
         <Route path="/kruskal" exact name="Kruskal" component={Kruskal} />
         <Route path="/contact" exact name="Contact" component={Contact} />

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import Header from "../Header/Header";
 import Banner from "../Banner/Banner";
-import Services from "../Services/Services";
+// import Services from "../Services/Services";
 import Footer from "../Footer/Footer";
 import "../../index.css";
 

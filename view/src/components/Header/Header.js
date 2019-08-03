@@ -42,6 +42,16 @@ const Header = ({ active }) => {
                 Contact
               </Link>
             </li>
+            <li className={`nav-item ${active === "register" && "active"} `}>
+              <Link to="/register" className="nav-link">
+                Sign up
+              </Link>
+            </li>
+            <li className={`nav-item ${active === "login" && "active"} `}>
+              <Link to="/login" className="nav-link">
+                Sign in
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

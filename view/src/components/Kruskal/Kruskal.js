@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import propTypes from "prop-types";
 import { connect } from "react-redux";
-import { PushSpinner } from "react-spinners-kit";
 import readXlsxFile from "read-excel-file";
 import Graph from "react-graph-vis";
-import { kruskal } from "../../actions/graph";
+import { kruskal, saveGraph } from "../../actions/graph";
 
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
@@ -14,11 +13,31 @@ class Kruskal extends Component {
     graph: {},
     loading: false,
     sendGraph: [],
-    kruskalGraph: {}
+    kruskalGraph: {},
+    minimizeLoading: false,
+    saveLoading: false
   };
   componentWillReceiveProps(next) {
+    if (next.saved.length) {
+      this.setState({ saveLoading: false });
+    }
     if (Object.keys(next.kruskalGraph).length) {
-      this.setState({ kruskalGraph: next.kruskalGraph });
+      this.setState({
+        kruskalGraph: next.kruskalGraph,
+        minimizeLoading: false
+      });
+    }
+  }
+
+  componentDidMount() {
+    if (
+      this.props.kruskalGraph &&
+      Object.keys(this.props.kruskalGraph).length
+    ) {
+      this.setState({
+        kruskalGraph: this.props.kruskalGraph,
+        minimizeLoading: false
+      });
     }
   }
 
@@ -120,6 +139,17 @@ class Kruskal extends Component {
     e.preventDefault();
     if (Object.keys(this.state.graph).length > 0) {
       this.props.kruskal(this.state.sendGraph);
+      this.setState({ minimizeLoading: false });
+    }
+  };
+
+  onSave = e => {
+    e.preventDefault();
+    if (!Object.keys(this.props.kruskalGraph).length) {
+      this.setState({ errors: "No Graph To Save" });
+    } else {
+      this.props.saveGraph(this.props.kruskalGraph);
+      this.setState({ saveLoading: true });
     }
   };
   render() {
@@ -141,86 +171,65 @@ class Kruskal extends Component {
     return (
       <div>
         <Nav active="kruskal" />
-        {this.state.loading ? (
-          <div className="center-spinner">
-            <div
-              style={{ marginTop: "10%", marginBottom: "10%" }}
-              className="row"
+        <div className="row">
+          <div className="col-md-12">
+            <form
+              // onSubmit={this.onSubmit}
+              style={{ marginTop: "7%", marginBottom: "3%" }}
+              className=""
             >
-              <div className="col-md-4 offset-4">
-                <PushSpinner
-                  size={50}
-                  color="#686769"
-                  loading={this.state.loading}
-                />
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="row">
-            <div className="col-md-12">
-              <form
-                // onSubmit={this.onSubmit}
-                style={{ marginTop: "7%", marginBottom: "3%" }}
-                className=""
-              >
-                <div className="row">
-                  <div className="col-sm-3 col-md-3 col-lg-3 " />
-                  <div className="col-sm-6 col-md-6 col-lg-6 ">
-                    <div className="row">
-                      <div className="col-md-2" />
-                      <div className="col-md-8 ">
-                        <h5 className="mb-3 text-center">Upload Your Map</h5>
-                        <div className="input-group mb-3">
-                          <input
-                            type="file"
-                            className="form-control"
-                            placeholder="Recipient's username"
-                            aria-label="Recipient's username"
-                            name="excel"
-                            id="excel"
-                            aria-describedby="basic-addon2"
-                            onChange={this.onChange}
-                          />
-                          <div className="input-group-append">
-                            <span
-                              className="input-group-text"
-                              id="basic-addon2"
-                            >
-                              <button className="btn btn-primary">
-                                Upload
-                              </button>
-                            </span>
-                          </div>
+              <div className="row">
+                <div className="col-sm-3 col-md-3 col-lg-3 " />
+                <div className="col-sm-6 col-md-6 col-lg-6 ">
+                  <div className="row">
+                    <div className="col-md-2" />
+                    <div className="col-md-8 ">
+                      <h5 className="mb-3 text-center">Upload Your Map</h5>
+                      <div className="input-group mb-3">
+                        <input
+                          type="file"
+                          className="form-control"
+                          placeholder="Recipient's username"
+                          aria-label="Recipient's username"
+                          name="excel"
+                          id="excel"
+                          aria-describedby="basic-addon2"
+                          onChange={this.onChange}
+                        />
+                        <div className="input-group-append">
+                          <span className="input-group-text" id="basic-addon2">
+                            <button className="btn btn-primary">Upload</button>
+                          </span>
                         </div>
                       </div>
-                      <div className="col-md-2" />
                     </div>
+                    <div className="col-md-2" />
                   </div>
-                  <div className="col-sm-3 col-md-3  col-lg-3" />
                 </div>
-              </form>
+                <div className="col-sm-3 col-md-3  col-lg-3" />
+              </div>
+            </form>
 
-              <div className="container">
-                <div className="row mb-5 ">
-                  <div className="col-md-1" />
-                  <div
-                    // style={{ height: "700px", width: "100%" }}
-                    className=" col-md-10 col-lg-10 col-sm-10"
-                  >
-                    <h3 className="text-muted text-center">Your Graph</h3>
-                    {Object.keys(this.state.graph).length > 0 && (
-                      <Graph
-                        graph={this.state.graph}
-                        options={options}
-                        events={events}
-                        style={{ height: "100%", width: "100%" }}
-                      />
-                    )}
-                  </div>
-                  <div className="col-md-1" />
+            <div className="container">
+              <div className="row mb-5 ">
+                <div className="col-md-1" />
+                <div
+                  // style={{ height: "700px", width: "100%" }}
+                  className=" col-md-10 col-lg-10 col-sm-10"
+                >
+                  <h3 className="text-muted text-center">Your Graph</h3>
+                  {Object.keys(this.state.graph).length > 0 && (
+                    <Graph
+                      graph={this.state.graph}
+                      options={options}
+                      events={events}
+                      style={{ height: "100%", width: "100%" }}
+                    />
+                  )}
+                </div>
+                <div className="col-md-1" />
 
-                  {/* <div
+                {/* <div
                     style={{ height: "700px", width: "100%" }}
                     className=" col-md-6 col-lg-6 col-sm-6"
                   >
@@ -237,40 +246,53 @@ class Kruskal extends Component {
                       />
                     )}
                   </div> */}
-                </div>
-              </div>
-              <div className="row mb-5">
-                <div className="col-md-1" />
-
-                <div className=" col-md-10 col-lg-10 col-sm-10">
-                  <h3 className="text-muted text-center">
-                    Cost Effective Graph
-                  </h3>
-
-                  {Object.keys(this.state.kruskalGraph).length > 0 && (
-                    <Graph
-                      graph={this.state.kruskalGraph}
-                      options={options}
-                      events={events}
-                      style={{ height: "100%", width: "100%" }}
-                    />
-                  )}
-                </div>
-                <div className="col-md-1" />
-              </div>
-
-              <div className="row mb-5">
-                <div className="col-md-3" />
-                <div className="col-md-6 col-sm-6 col-lg-6 text-center">
-                  <button onClick={this.onSubmit} className="btn btn-primary">
-                    Minimize
-                  </button>
-                </div>
-                <div className="col-md-3" />
               </div>
             </div>
+            <div className="row mb-5">
+              <div className="col-md-1" />
+
+              <div className=" col-md-10 col-lg-10 col-sm-10">
+                <h3 className="text-muted text-center">Cost Effective Graph</h3>
+
+                {Object.keys(this.state.kruskalGraph).length > 0 && (
+                  <Graph
+                    graph={this.state.kruskalGraph}
+                    options={options}
+                    events={events}
+                    style={{ height: "100%", width: "100%" }}
+                  />
+                )}
+              </div>
+              <div className="col-md-1" />
+            </div>
+
+            <div className="row mb-5">
+              <div className="col-md-3" />
+
+              <div className="col-md-3 col-sm-3 col-lg-3 text-center mt-2">
+                <button
+                  disabled={this.state.minimizeLoading}
+                  onClick={this.onSubmit}
+                  className="btn btn-primary"
+                >
+                  {this.state.minimizeLoading ? "Minimizing..." : "Minimize"}
+                </button>
+              </div>
+
+              <div className="col-md-3 col-sm-3 col-lg-3 text-center mt-2">
+                <button
+                  disabled={this.state.saveLoading}
+                  onClick={this.onSave}
+                  className="btn btn-primary"
+                >
+                  {this.state.saveLoading ? "Saving..." : "Save"}
+                </button>
+              </div>
+              <div className="col-md-3" />
+            </div>
           </div>
-        )}
+        </div>
+
         <Footer isAuthenticated={true} />
       </div>
     );
@@ -282,12 +304,12 @@ Kruskal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  kruskalGraph: state.graph.kruskal
+  kruskalGraph: state.graph.kruskal,
+  saved: state.graph.saved,
+  errors: state.graph.errors
 });
 
 export default connect(
   mapStateToProps,
-  { kruskal }
+  { kruskal, saveGraph }
 )(Kruskal);
-// mapStateToProps,
-// { addSubject, getPersonality }

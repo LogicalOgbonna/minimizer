@@ -6,20 +6,18 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 // import decoder from "jwt-decode";
 // import axios from "axios";
-// import setAuthorizationHeader from "./utils/setAuthorizationHeader";
+import setAuthorizationHeader from "./utils/setAuthorizationHeader";
 import history from "./utils/history";
 // import { userLoggedIn } from "./actions/auth";
 // import { getTest } from "./actions/test";
 
 import store from "./store";
 
-// if (localStorage.cas) {
-//   const token = JSON.parse(localStorage.cas);
-//   // console.log(user);
-//   const user = decoder(token);
-//   setAuthorizationHeader(token);
-//   store.dispatch(userLoggedIn(user));
-// }
+if (localStorage.cost) {
+  const token = JSON.parse(localStorage.cost);
+  setAuthorizationHeader(token);
+  // store.dispatch(userLoggedIn(user));
+}
 
 ReactDOM.render(
   <Provider store={store}>
