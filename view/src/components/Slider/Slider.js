@@ -19,7 +19,7 @@ export default function Slider() {
                   Kruskal's Algorithm is one of the oldest MST Algorithms, it
                   ...
                 </p>
-                <Link to="/mst" className="btn btn-secondary btn-lg">
+                <Link to="/dashboard" className="btn btn-secondary btn-lg">
                   Learn More
                 </Link>
               </div>
@@ -33,7 +33,7 @@ export default function Slider() {
                 <p className="text-white">
                   Prim's Algorithm solves MST problems in...
                 </p>
-                <Link to="/mst" className="btn btn-secondary btn-lg">
+                <Link to="/dashboard" className="btn btn-secondary btn-lg">
                   Learn More
                 </Link>
               </div>
