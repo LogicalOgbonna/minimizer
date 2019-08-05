@@ -2,7 +2,8 @@ import {
   KRUSKAL,
   SAVE_KRUSKAL,
   GRAPH_ERROR,
-  USER_LOGGED_OUT
+  USER_LOGGED_OUT,
+  USER_GRAPH
 } from "../actions/types";
 
 const graph = (state = {}, action = {}) => {
@@ -22,11 +23,17 @@ const graph = (state = {}, action = {}) => {
         ...state,
         errors: action.error
       };
+    case USER_GRAPH:
+      return {
+        ...state,
+        userGraph: action.graph
+      };
     case USER_LOGGED_OUT:
       return {
         ...state,
         kruskal: {},
-        saved: []
+        saved: [],
+        userGraph: []
       };
     default:
       return state;

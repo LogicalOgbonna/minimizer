@@ -65,7 +65,6 @@ router.post(
   "/saveKruskal",
   passport.authenticate("jwt", { session: false }),
   (req, res, next) => {
-    console.log(req.body);
     const graph = {
       edges: req.body.edges,
       nodes: req.body.nodes

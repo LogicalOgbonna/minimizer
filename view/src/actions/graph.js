@@ -1,5 +1,5 @@
 import axios from "axios";
-import { KRUSKAL, SAVE_KRUSKAL, GRAPH_ERROR } from "./types";
+import { KRUSKAL, SAVE_KRUSKAL, GRAPH_ERROR, USER_GRAPH } from "./types";
 
 export const kruskalMST = kruskal => ({
   type: KRUSKAL,
@@ -13,6 +13,10 @@ export const errors = error => ({
 export const saveKruskal = data => ({
   type: SAVE_KRUSKAL,
   data
+});
+export const userGraph = graph => ({
+  type: USER_GRAPH,
+  graph
 });
 export const kruskal = graph => dispatch => {
   axios
@@ -95,4 +99,13 @@ export const saveGraph = graph => dispatch => {
       dispatch(saveKruskal(data.data));
     })
     .catch(err => dispatch(errors(err)));
+};
+
+export const getUserGraph = () => dispatch => {
+  axios
+    .get("/api/kruskal")
+    .then(graph => {
+      dispatch(userGraph(graph.data));
+    })
+    .catch(error => dispatch(errors(error)));
 };

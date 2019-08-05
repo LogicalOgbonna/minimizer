@@ -6,7 +6,6 @@ import propType from "prop-types";
 import { logout } from "../../actions/auth";
 
 const Nav = ({ active, user, logout }) => {
-  console.log(user);
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-0">
       <div className="container">
@@ -108,7 +107,7 @@ const Nav = ({ active, user, logout }) => {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown mr-3">
               <a
-                href="#"
+                href="drop"
                 className="nav-link dropdown-toggle"
                 data-toggle="dropdown"
               >

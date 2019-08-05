@@ -5,3 +5,4 @@ export const AUTH_ERRORS = "ERRORS";
 export const KRUSKAL = "KRUSKAL";
 export const SAVE_KRUSKAL = "SAVE_KRUSKAL";
 export const GRAPH_ERROR = "GRAPH_ERROR";
+export const USER_GRAPH = "USER_GRAPH";
