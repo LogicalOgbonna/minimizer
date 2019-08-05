@@ -1,4 +1,5 @@
 import React from "react";
+import { UserCard } from "react-ui-cards";
 
 export default function Company(props) {
   console.log(props.graph);
@@ -13,7 +14,60 @@ export default function Company(props) {
               <h1 className="text-bold text-center text-uppercase">
                 Minimal Spanning Tree (MST) Problem{" "}
               </h1>
-              <p className="text-justify">
+              <div className="card-container">
+                <UserCard
+                  cardClass="float"
+                  header="https://i.imgur.com/w5tX1Pn.jpg"
+                  avatar="https://i.imgur.com/uDYejhJ.jpg"
+                  name="Justin Case"
+                  positionName="Software Developer"
+                  stats={[
+                    {
+                      name: "followers",
+                      value: 21
+                    },
+                    {
+                      name: "following",
+                      value: 37
+                    },
+                    {
+                      name: "posts",
+                      value: 117
+                    }
+                  ]}
+                />
+                <UserCard
+                  cardClass="float"
+                  href="https://github.com/nukeop"
+                  header="https://i.imgur.com/vRAtM3i.jpg"
+                  avatar="https://i.imgur.com/XJxqvsU.jpg"
+                  name="Frank Hepsfield"
+                  positionName="Software Engineering Manager"
+                />
+                <UserCard
+                  cardClass="float"
+                  href="https://github.com/nukeop"
+                  header="https://i.imgur.com/p5yXGQk.jpg"
+                  avatar="https://i.imgur.com/kFkyYkZ.jpg"
+                  name="Joseph Cheps"
+                  positionName="Firmware Engineer"
+                  stats={[
+                    {
+                      name: "commits",
+                      value: 365
+                    },
+                    {
+                      name: "stars",
+                      value: 110
+                    },
+                    {
+                      name: "repositories",
+                      value: 54
+                    }
+                  ]}
+                />
+              </div>
+              {/* <p className="text-justify">
                 A minimum spanning tree (MST) or minimum weight spanning tree is
                 a subset of the edges of a connected, edge-weighted undirected
                 graph that connects all the vertices together, without any
@@ -35,12 +89,12 @@ export default function Company(props) {
                 with the lowest total cost, representing the least expensive
                 path for constructing the road.
               </p>
-              <p className="text-justify">
-                This is exactly what this project is set to achieve, by
+              <p className="text-justify"> */}
+              {/* This is exactly what this project is set to achieve, by
                 developing a fast and reliable computer program that could
                 compute at a great level a cost-effective MTS of any undirected
                 graph network supplied by a user.
-              </p>
+              </p> */}
             </div>
             <div className="col-md-1" />
           </div>

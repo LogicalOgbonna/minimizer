@@ -73,7 +73,7 @@ const Banner = () => {
                 their respective distances
               </p>
               <Link
-                to="/mst"
+                to="/dashboard"
                 style={{ float: "right" }}
                 className="btn btn-outline-danger btn-lg text-center"
               >
@@ -98,7 +98,7 @@ const Banner = () => {
                 supplied in the inputed graph
               </p>
               <Link
-                to="/mst"
+                to="/dashboard"
                 className="btn btn-outline-danger btn-lg text-center"
               >
                 Try Now
