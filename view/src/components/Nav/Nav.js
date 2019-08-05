@@ -6,6 +6,7 @@ import propType from "prop-types";
 import { logout } from "../../actions/auth";
 
 const Nav = ({ active, user, logout }) => {
+  console.log(user);
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-0">
       <div className="container">
@@ -20,43 +21,89 @@ const Nav = ({ active, user, logout }) => {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
-          <ul className="navbar-nav">
-            <li className="nav-item px-2">
-              <Link
-                to="/mst"
-                className={`nav-link ${active === "mst" ? "active" : ""}`}
-              >
-                MST
-              </Link>
-            </li>
+          {user.reason === "Research" && (
+            <ul className="navbar-nav">
+              <li className="nav-item px-2">
+                <Link
+                  to="/dashboard"
+                  className={`nav-link ${active === "mst" ? "active" : ""}`}
+                >
+                  Algorithms
+                </Link>
+              </li>
 
-            <li className="nav-item px-2">
-              <Link
-                to="/kruskal"
-                className={`nav-link ${active === "kruskal" ? "active" : ""}`}
-              >
-                Kruskal
-              </Link>
-            </li>
+              <li className="nav-item px-2">
+                <Link
+                  to="/kruskal"
+                  className={`nav-link ${active === "kruskal" ? "active" : ""}`}
+                >
+                  kruskal's illustration
+                </Link>
+              </li>
 
-            <li className="nav-item px-2">
-              <Link
-                to="/prim"
-                className={`nav-link ${active === "prim" ? "active" : ""}`}
-              >
-                Prim
-              </Link>
-            </li>
+              <li className="nav-item px-2">
+                <Link
+                  to="/prim"
+                  className={`nav-link ${active === "prim" ? "active" : ""}`}
+                >
+                  Prim's illustration
+                </Link>
+              </li>
 
-            <li className="nav-item px-2">
-              <Link
-                to="/dijkstra"
-                className={`nav-link ${active === "dijkstra" ? "active" : ""}`}
-              >
-                Dijkstra
-              </Link>
-            </li>
-          </ul>
+              <li className="nav-item px-2">
+                <Link
+                  to="/dijkstra"
+                  className={`nav-link ${
+                    active === "dijkstra" ? "active" : ""
+                  }`}
+                >
+                  Dijkstra's illustration
+                </Link>
+              </li>
+            </ul>
+          )}
+
+          {user.reason === "Company" && (
+            <ul className="navbar-nav">
+              <li className="nav-item px-2">
+                <Link
+                  to="/dashboard"
+                  className={`nav-link ${active === "mst" ? "active" : ""}`}
+                >
+                  Dashboard
+                </Link>
+              </li>
+
+              <li className="nav-item px-2">
+                <Link
+                  to="/kruskal"
+                  className={`nav-link ${active === "kruskal" ? "active" : ""}`}
+                >
+                  kruskal
+                </Link>
+              </li>
+
+              <li className="nav-item px-2">
+                <Link
+                  to="/prim"
+                  className={`nav-link ${active === "prim" ? "active" : ""}`}
+                >
+                  Prim
+                </Link>
+              </li>
+
+              <li className="nav-item px-2">
+                <Link
+                  to="/dijkstra"
+                  className={`nav-link ${
+                    active === "dijkstra" ? "active" : ""
+                  }`}
+                >
+                  Dijkstra
+                </Link>
+              </li>
+            </ul>
+          )}
 
           <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown mr-3">
@@ -78,9 +125,11 @@ const Nav = ({ active, user, logout }) => {
                 <Link to="/profile" className="dropdown-item">
                   <i className="fas fa-user-circle" /> Profile
                 </Link>
-                <Link to="/graph" className="dropdown-item">
-                  <i className="fas fa-chart-bar" /> My Graph
-                </Link>
+                {user.reason !== "Developer" && (
+                  <Link to="/graph" className="dropdown-item">
+                    <i className="fas fa-chart-bar" /> My Graph
+                  </Link>
+                )}
 
                 <button
                   onClick={() => logout()}

@@ -48,7 +48,7 @@ export const login = user => dispatch => {
             id: user.data._id
           })
         );
-        history.push("/mst");
+        history.push("/dashboard");
         setAuthorizationHeader(token);
       });
     })
@@ -76,7 +76,7 @@ export const register = user => dispatch => {
             id: user.data._id
           })
         );
-        history.push("/mst");
+        history.push("/dashboard");
         setAuthorizationHeader(token);
       });
     })

@@ -4,19 +4,19 @@ import { connect } from "react-redux";
 
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
-import "./MST.css";
+import "./Dashboard.css";
 class Career extends Component {
   state = {};
 
   render() {
-    return (
-      <div>
-        <Nav active="mst" />
+    const user = this.props.user.user;
+    const Reasearch = () => (
+      <React.Fragment>
         <section id="mst" className="py-3">
           <div className="container">
             <div className="row">
               <div className="col-md-1" />
-              <div className="col-md-8">
+              <div className="col-md-10">
                 <h1 className="text-bold text-center text-uppercase">
                   Minimal Spanning Tree (MST) Problem{" "}
                 </h1>
@@ -68,6 +68,15 @@ class Career extends Component {
         <div className="row">
           <div className="col-md-12" />
         </div>
+      </React.Fragment>
+    );
+    if (user.reason === "Company") {
+    }
+    console.log(user);
+    return (
+      <div>
+        <Nav active="mst" />
+        {user && user.reason === "Company" && Reasearch()}
         <Footer />
       </div>
     );
@@ -75,15 +84,13 @@ class Career extends Component {
 }
 
 Career.propTypes = {
-  isAuthenticated: propTypes.bool
+  user: propTypes.object
 };
 
-// const mapStateToProps = state => ({
-//   isAuthenticated: state.user.isAuthenticated,
-//   career: state.user.career,
-//   riasec: state.user.riasec
-// });
+const mapStateToProps = state => ({
+  user: state.user
+});
 
-export default connect()(Career);
+export default connect(mapStateToProps)(Career);
 // mapStateToProps,
 // { addSubject, getPersonality }
