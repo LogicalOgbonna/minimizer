@@ -1,9 +1,10 @@
 import React from "react";
-import { UserCard } from "react-ui-cards";
+import { RecipeCard, ProductCard } from "react-ui-cards";
+import image from "../images/route.png";
+// import "./Company.css";
 
-export default function Company(props) {
-  console.log(props.graph);
-  console.log();
+export default function Company({ graph }) {
+  console.log(graph);
   return (
     <div>
       <section id="mst" className="py-3">
@@ -11,101 +12,94 @@ export default function Company(props) {
           <div className="row">
             <div className="col-md-1" />
             <div className="col-md-10">
-              <h1 className="text-bold text-center text-uppercase">
-                Minimal Spanning Tree (MST) Problem{" "}
-              </h1>
-              <div className="card-container">
-                <UserCard
-                  cardClass="float"
-                  header="https://i.imgur.com/w5tX1Pn.jpg"
-                  avatar="https://i.imgur.com/uDYejhJ.jpg"
-                  name="Justin Case"
-                  positionName="Software Developer"
-                  stats={[
-                    {
-                      name: "followers",
-                      value: 21
-                    },
-                    {
-                      name: "following",
-                      value: 37
-                    },
-                    {
-                      name: "posts",
-                      value: 117
-                    }
-                  ]}
-                />
-                <UserCard
-                  cardClass="float"
-                  href="https://github.com/nukeop"
-                  header="https://i.imgur.com/vRAtM3i.jpg"
-                  avatar="https://i.imgur.com/XJxqvsU.jpg"
-                  name="Frank Hepsfield"
-                  positionName="Software Engineering Manager"
-                />
-                <UserCard
-                  cardClass="float"
-                  href="https://github.com/nukeop"
-                  header="https://i.imgur.com/p5yXGQk.jpg"
-                  avatar="https://i.imgur.com/kFkyYkZ.jpg"
-                  name="Joseph Cheps"
-                  positionName="Firmware Engineer"
-                  stats={[
-                    {
-                      name: "commits",
-                      value: 365
-                    },
-                    {
-                      name: "stars",
-                      value: 110
-                    },
-                    {
-                      name: "repositories",
-                      value: 54
-                    }
-                  ]}
-                />
-              </div>
-              {/* <p className="text-justify">
-                A minimum spanning tree (MST) or minimum weight spanning tree is
-                a subset of the edges of a connected, edge-weighted undirected
-                graph that connects all the vertices together, without any
-                cycles and with the minimum possible total edge weight. MST
-                problem is of high importance in network optimization, but it is
-                also difficult for the traditional network optimization
-                technique to deal with. A good example would be a road
-                construction company charged to construct streets to connect
-                houses in a particular city, constructing the roads (vertices)
-                requires a graph containing the houses (nodes) to be connected
-                by the road. Some of the roads might be too expensive, either
-                because they are longer, or the topography of the land (a valley
-                or mountain), these roads would be represented with larger
-                weight. Having in mind the cost of constructing these roads,
-                larger weights on roads implies higher costs, a spanning tree
-                for this graph would be as subset of those roads that has no
-                cycles but still connects every house; there might be several
-                spanning trees possible. A minimum spanning tree would be one
-                with the lowest total cost, representing the least expensive
-                path for constructing the road.
-              </p>
-              <p className="text-justify"> */}
-              {/* This is exactly what this project is set to achieve, by
-                developing a fast and reliable computer program that could
-                compute at a great level a cost-effective MTS of any undirected
-                graph network supplied by a user.
-              </p> */}
-            </div>
-            <div className="col-md-1" />
-          </div>
-
-          <div className="row">
-            <div className="col-md-1" />
-
-            <div className="col-md-8">
-              <h1 className="text-bold text-center text-uppercase">
-                Minimal Spanning Tree (MST) Algorithms{" "}
-              </h1>
+              {graph && (
+                <h3 className="text-bold text-center text-uppercase">
+                  {`You have ${graph.length} Minimized Graph${
+                    graph.length > 1 ? "s" : ""
+                  } Saved `}
+                </h3>
+              )}
+              <hr />
+              {graph && (
+                <div className="card-container">
+                  <div className="row">
+                    {graph &&
+                      graph.map((data, index) => {
+                        return (
+                          <div key={index} className="col-md-6">
+                            <RecipeCard
+                              href={`/${index}`}
+                              thumbnail={image}
+                              title="Save Minimized Graph"
+                              time={`nodes: ${data.nodes.length}`}
+                              servings={`edges: ${data.edges.length}`}
+                              likeCallback={() =>
+                                alert("You added Fluffy pancakes to favourites")
+                              }
+                            />
+                          </div>
+                        );
+                      })}
+                  </div>
+                </div>
+              )}
+              {!graph.length && (
+                <div className="card-container mb-5">
+                  <h3
+                    // style={{ margin: "auto" }}
+                    className="text-center text-muted ml-auto mr-auto mb-3"
+                  >
+                    Thinking of what to do?
+                  </h3>
+                  <div className="row">
+                    <div className="col-md-4 mb-4">
+                      <ProductCard
+                        photos={[
+                          "https://cdn2.iconfinder.com/data/icons/flaticons-stroke/16/minimize-1-512.png"
+                          // "https://i.imgur.com/raPe27t.jpg",
+                          // "https://i.imgur.com/IpEsYSH.jpg"
+                        ]}
+                        // price="$99"
+                        productName="Kruskal"
+                        description="Minimize your graph using Kruskal's Algorithm now."
+                        buttonText="Minimize"
+                        rating={3}
+                        url="/kruskal"
+                      />
+                    </div>
+                    <div className="col-md-4 mb-4">
+                      <ProductCard
+                        photos={[
+                          "https://upload.wikimedia.org/wikipedia/commons/d/d2/Minimum_spanning_tree.svg"
+                          // "https://i.imgur.com/raPe27t.jpg",
+                          // "https://i.imgur.com/IpEsYSH.jpg"
+                        ]}
+                        // price="$99"
+                        productName="MST"
+                        description="Know more about Minimum Spanning Tree Algorithms"
+                        buttonText="Search"
+                        rating={3}
+                        url="https://en.wikipedia.org/wiki/Minimum_spanning_tree"
+                      />
+                    </div>
+                    <div className="col-md-4 mb-4">
+                      <ProductCard
+                        photos={[
+                          "https://i1.wp.com/geeks10.com/wp-content/uploads/2018/05/Dijkstra-algorithm-geeks10-2018.jpg"
+                          // "https://i.imgur.com/raPe27t.jpg",
+                          // "https://i.imgur.com/IpEsYSH.jpg"
+                        ]}
+                        // price="$99"
+                        productName="Shortest Path"
+                        description="Get the Shortest path between two points in a graph"
+                        buttonText="Dijkstra"
+                        rating={3}
+                        url="/dijkstra"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="col-md-1" />
           </div>

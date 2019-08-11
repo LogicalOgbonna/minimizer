@@ -214,7 +214,6 @@ class Kruskal extends Component {
               <div className="row mb-5 ">
                 <div className="col-md-1" />
                 <div
-                  // style={{ height: "700px", width: "100%" }}
                   className=" col-md-10 col-lg-10 col-sm-10"
                 >
                   <h3 className="text-muted text-center">Your Graph</h3>
@@ -228,24 +227,6 @@ class Kruskal extends Component {
                   )}
                 </div>
                 <div className="col-md-1" />
-
-                {/* <div
-                    style={{ height: "700px", width: "100%" }}
-                    className=" col-md-6 col-lg-6 col-sm-6"
-                  >
-                    <h3 className="text-muted text-center">
-                      Cost Effective Graph
-                    </h3>
-
-                    {Object.keys(this.state.kruskalGraph).length > 0 && (
-                      <Graph
-                        graph={this.state.kruskalGraph}
-                        options={options}
-                        events={events}
-                        style={{ height: "100%", width: "100%" }}
-                      />
-                    )}
-                  </div> */}
               </div>
             </div>
             <div className="row mb-5">

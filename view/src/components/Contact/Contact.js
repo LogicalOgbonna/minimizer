@@ -29,8 +29,8 @@ class Contact extends Component {
               </div>
 
               <div className="col-md-8">
-                <div className="card p-4">
-                  <div className="card-body">
+                <div className=" p-4">
+                  <div className="">
                     <h3 className="text-center">
                       Please fill out this form to contact us
                     </h3>

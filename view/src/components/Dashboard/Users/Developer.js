@@ -11,7 +11,8 @@ export default function Developer() {
               <h1 className="text-bold text-center text-uppercase">
                 Minimal Spanning Tree (MST) Problem{" "}
               </h1>
-              <p className="text-justify">
+              <p className="text-center">Comming Soon</p>
+              {/* <p className="text-justify">
                 A minimum spanning tree (MST) or minimum weight spanning tree is
                 a subset of the edges of a connected, edge-weighted undirected
                 graph that connects all the vertices together, without any
@@ -38,7 +39,7 @@ export default function Developer() {
                 developing a fast and reliable computer program that could
                 compute at a great level a cost-effective MTS of any undirected
                 graph network supplied by a user.
-              </p>
+              </p> */}
             </div>
             <div className="col-md-1" />
           </div>
@@ -47,9 +48,9 @@ export default function Developer() {
             <div className="col-md-1" />
 
             <div className="col-md-8">
-              <h1 className="text-bold text-center text-uppercase">
+              {/* <h1 className="text-bold text-center text-uppercase">
                 Minimal Spanning Tree (MST) Algorithms{" "}
-              </h1>
+              </h1> */}
             </div>
             <div className="col-md-1" />
           </div>

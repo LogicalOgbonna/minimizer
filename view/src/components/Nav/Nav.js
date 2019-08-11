@@ -150,7 +150,7 @@ const Nav = ({ active, user, logout }) => {
 };
 
 Nav.propType = {
-  active: propType.string.isRequired,
+  active: propType.string,
   isAuthenticated: propType.bool.isRequired,
   user: propType.object.isRequired
   // logout: propType.func.isRequired

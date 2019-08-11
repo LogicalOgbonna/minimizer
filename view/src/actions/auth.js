@@ -39,6 +39,7 @@ export const login = user => dispatch => {
       localStorage.cost = JSON.stringify(token);
       const currentUser = jwtDecode(token);
       axios.get(`/api/user/auth/current/${currentUser.id}`).then(user => {
+        setAuthorizationHeader(token);
         dispatch(
           userLoggedIn({
             admin: user.data.admin,
@@ -49,11 +50,9 @@ export const login = user => dispatch => {
           })
         );
         history.push("/dashboard");
-        setAuthorizationHeader(token);
       });
     })
     .catch(error => {
-      // console.log(error.response.data);
 
       error.response && dispatch(errors(error.response.data));
     });
@@ -67,6 +66,7 @@ export const register = user => dispatch => {
       localStorage.cost = JSON.stringify(token);
       const currentUser = jwtDecode(token);
       axios.get(`/api/user/auth/current/${currentUser.id}`).then(user => {
+        setAuthorizationHeader(token);
         dispatch(
           userLoggedIn({
             admin: user.data.admin,
@@ -77,7 +77,6 @@ export const register = user => dispatch => {
           })
         );
         history.push("/dashboard");
-        setAuthorizationHeader(token);
       });
     })
     .catch(error => {

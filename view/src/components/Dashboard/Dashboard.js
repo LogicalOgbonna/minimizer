@@ -21,7 +21,6 @@ class Career extends Component {
   // }
   render() {
     const user = this.props.user.user;
-    // console.log(this.props.userGraph);
     return (
       <div>
         <Nav active="mst" />
