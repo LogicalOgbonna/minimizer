@@ -43,7 +43,7 @@ export default function Company({ graph }) {
                   </div>
                 </div>
               )}
-              {!graph.length && (
+              {!graph && !graph.length && (
                 <div className="card-container mb-5">
                   <h3
                     // style={{ margin: "auto" }}
