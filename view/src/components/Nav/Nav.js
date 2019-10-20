@@ -40,14 +40,14 @@ const Nav = ({ active, user, logout }) => {
                 </Link>
               </li>
 
-              <li className="nav-item px-2">
+              {/* <li className="nav-item px-2">
                 <Link
                   to="/prim"
                   className={`nav-link ${active === "prim" ? "active" : ""}`}
                 >
                   Prim's illustration
                 </Link>
-              </li>
+              </li> */}
 
               <li className="nav-item px-2">
                 <Link
@@ -82,14 +82,14 @@ const Nav = ({ active, user, logout }) => {
                 </Link>
               </li>
 
-              <li className="nav-item px-2">
+              {/* <li className="nav-item px-2">
                 <Link
                   to="/prim"
                   className={`nav-link ${active === "prim" ? "active" : ""}`}
                 >
                   Prim
                 </Link>
-              </li>
+              </li> */}
 
               <li className="nav-item px-2">
                 <Link

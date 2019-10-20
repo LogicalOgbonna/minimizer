@@ -212,21 +212,19 @@ class Kruskal extends Component {
 
             <div className="container">
               <div className="row mb-5 ">
-                <div className="col-md-1" />
-                <div
-                  className=" col-md-10 col-lg-10 col-sm-10"
-                >
+                {/* <div className="col-md-1" /> */}
+                <div className=" col-md-12 col-lg-12 col-sm-12">
                   <h3 className="text-muted text-center">Your Graph</h3>
                   {Object.keys(this.state.graph).length > 0 && (
                     <Graph
                       graph={this.state.graph}
                       options={options}
                       events={events}
-                      style={{ height: "100%", width: "100%" }}
+                      style={{ height: "100%", width: "101%" }}
                     />
                   )}
                 </div>
-                <div className="col-md-1" />
+                {/* <div className="col-md-1" /> */}
               </div>
             </div>
             <div className="row mb-5">

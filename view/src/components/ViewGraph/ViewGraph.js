@@ -53,13 +53,13 @@ class ViewGraph extends Component {
             </div>
           </div> */}
           <div className="row">
-            <div className="col-md-12">
+            <div style={{width: "1000px"}} className="col-md-12">
               {this.state.userGraph.length ? (
                 <Graph
                   graph={this.state.userGraph[this.state.id]}
                   options={options}
                   events={events}
-                  style={{ height: "100%", width: "100%" }}
+                  style={{ height: "100%", width: "1000px" }}
                 />
               ) : (
                 "locding"
