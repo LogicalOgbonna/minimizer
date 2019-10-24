@@ -34,7 +34,7 @@ export default function Footer() {
             <div className="col-lg-6 copy-right p-0">
               <p className="">
                 © 2019 CAS. All rights reserved | Design by
-                <a href="http://suretradebls.com"> SureTrade NIG.</a>
+                <a href="http://www.ogbonnaarinze.tk/" target="_blank"> Logical Ogbonna.</a>
               </p>
             </div>
           </div>

@@ -12,7 +12,7 @@ const Header = ({ active, isAuthenticated, logout }) => {
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <div className="container">
         <Link to="/" className="navbar-brand">
-          CENM
+          Minimizer
         </Link>
         <button
           className="navbar-toggler"
